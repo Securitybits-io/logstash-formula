@@ -1,0 +1,17 @@
+logstash:
+  repo: 7.x
+  version: 7.4.0
+  hold: True
+  restart: True
+  enable: True
+  config:
+    path.data: /var/lib/logstash
+    path.logs: /var/log/logstash
+  pipelines:
+    01-beats-input:
+      data: |
+        input {
+          beats {
+            port => 5044
+          }
+        }
